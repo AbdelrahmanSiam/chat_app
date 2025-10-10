@@ -2,6 +2,7 @@ import 'package:chat_app/Screens/sign_in_screen.dart';
 import 'package:chat_app/Widgets/custom_navigate_button_widget.dart';
 import 'package:chat_app/Widgets/custom_text_field_widget.dart';
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/helper/show_snakbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -89,20 +90,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       setState(() {});
                       try {
                         await userCredential();
-                        customSnackbar(
+                        showSnackBar(
                             context,
                             "Your email are created succesfully.",
                             Colors.green);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
-                          customSnackbar(
+                          showSnackBar(
                               context, 'The password provided is too weak.');
                         } else if (e.code == 'email-already-in-use') {
-                          customSnackbar(context,
+                          showSnackBar(context,
                               'The account already exists for that email.');
                         }
                       } catch (e) {
-                        customSnackbar(context, e.toString());
+                        showSnackBar(context, e.toString());
                       }
                       isLoading = false;
                       setState(() {});
@@ -145,16 +146,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  void customSnackbar(BuildContext context, String msg,
-      [Color? backgroundColor]) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: backgroundColor,
-        content: Text(msg),
       ),
     );
   }
