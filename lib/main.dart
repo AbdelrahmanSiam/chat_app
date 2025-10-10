@@ -1,10 +1,10 @@
-import 'package:chat_app/Screens/login_screen.dart';
+import 'package:chat_app/Screens/sign_in_screen.dart';
 import 'package:chat_app/Screens/register_screen.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -20,10 +20,10 @@ class ScholarChat extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        LoginScreen.pageId : (context)=> LoginScreen(),
-        RegisterScreen.pageId : (context)=> RegisterScreen(),
+        SiginInScreen.pageId: (context) => SiginInScreen(),
+        RegisterScreen.pageId: (context) => RegisterScreen(),
       },
-      initialRoute: 'LoginScreen',
+      initialRoute: 'SignInScreen',
     );
   }
 }

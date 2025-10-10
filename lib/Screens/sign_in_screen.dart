@@ -4,10 +4,10 @@ import 'package:chat_app/Widgets/custom_text_field_widget.dart';
 import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SiginInScreen extends StatelessWidget {
+  const SiginInScreen({super.key});
   static String pageId =
-      'RegisterScreen'; // use it from the class name ass LoginScreen.pageId
+      'SignInScreen'; // use it from the class name ass LoginScreen.pageId
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "LOGIN",
+              "SIGN IN",
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
@@ -45,20 +45,20 @@ class LoginScreen extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            CustomTextField(
+            CustomTextFormField(
               text: 'Email',
             ),
             SizedBox(
               height: 10,
             ),
-            CustomTextField(
+            CustomTextFormField(
               text: 'password',
             ),
             SizedBox(
               height: 50,
             ),
             CustomNavigateButton(
-              buttonText: 'LOGIN',
+              buttonText: 'SIGN IN',
             ),
             SizedBox(
               height: 10,
