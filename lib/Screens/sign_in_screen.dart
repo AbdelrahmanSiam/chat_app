@@ -1,3 +1,4 @@
+import 'package:chat_app/Screens/chat_screen.dart';
 import 'package:chat_app/Screens/register_screen.dart';
 import 'package:chat_app/Widgets/custom_navigate_button_widget.dart';
 import 'package:chat_app/Widgets/custom_text_field_widget.dart';
@@ -9,8 +10,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SiginInScreen extends StatefulWidget {
   SiginInScreen({super.key});
-  static String pageId =
-      'SignInScreen'; 
+  static String pageId = 'SignInScreen';
   @override
   State<SiginInScreen> createState() => _SiginInScreenState();
 }
@@ -24,7 +24,7 @@ class _SiginInScreenState extends State<SiginInScreen> {
 
   bool isLoading = false;
 
- // use it from the class name ass LoginScreen.pageId
+  // use it from the class name ass LoginScreen.pageId
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -85,13 +85,14 @@ class _SiginInScreenState extends State<SiginInScreen> {
                 CustomNavigateButton(
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
-                      isLoading = true;
                       setState(() {
-                        
+                        isLoading = true;
                       });
                       try {
-                        await userSiginIN();
-                        showSnackBar(context, 'Sign in successfuly' , Colors.green);
+                        await userSiginIn();
+                        showSnackBar(
+                            context, 'Sign in successfuly', Colors.green);
+                        Navigator.pushNamed(context,ChatScreen.pageId);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnackBar(
@@ -102,9 +103,9 @@ class _SiginInScreenState extends State<SiginInScreen> {
                         }
                       }
                     }
-                    isLoading = false;
+
                     setState(() {
-                      
+                      isLoading = false;
                     });
                   },
                   buttonText: 'SIGN IN',
@@ -149,8 +150,7 @@ class _SiginInScreenState extends State<SiginInScreen> {
     );
   }
 
-
-  Future<void> userSiginIN() async {
+  Future<void> userSiginIn() async {
     UserCredential userCredential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
   }

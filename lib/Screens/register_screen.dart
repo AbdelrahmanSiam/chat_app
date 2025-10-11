@@ -1,3 +1,4 @@
+import 'package:chat_app/Screens/chat_screen.dart';
 import 'package:chat_app/Screens/sign_in_screen.dart';
 import 'package:chat_app/Widgets/custom_navigate_button_widget.dart';
 import 'package:chat_app/Widgets/custom_text_field_widget.dart';
@@ -86,14 +87,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   buttonText: 'REGISTER',
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
-                      isLoading = true;
-                      setState(() {});
+                      setState(() {
+                        isLoading = true;
+                      });
                       try {
                         await userCredential();
                         showSnackBar(
                             context,
                             "Your email are created succesfully.",
                             Colors.green);
+                            Navigator.pushNamed(context,ChatScreen.pageId);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(
@@ -105,8 +108,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } catch (e) {
                         showSnackBar(context, e.toString());
                       }
-                      isLoading = false;
-                      setState(() {});
+
+                      setState(() {
+                        isLoading = false;
+                      });
                     }
                   },
                 ),

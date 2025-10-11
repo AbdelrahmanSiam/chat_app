@@ -1,3 +1,4 @@
+import 'package:chat_app/Screens/chat_screen.dart';
 import 'package:chat_app/Screens/sign_in_screen.dart';
 import 'package:chat_app/Screens/register_screen.dart';
 import 'package:chat_app/firebase_options.dart';
@@ -22,8 +23,9 @@ class ScholarChat extends StatelessWidget {
       routes: {
         SiginInScreen.pageId: (context) => SiginInScreen(),
         RegisterScreen.pageId: (context) => RegisterScreen(),
+        ChatScreen.pageId: (context) => ChatScreen(),
       },
-      initialRoute: 'SignInScreen',
+      initialRoute: ChatScreen.pageId,
     );
   }
 }
