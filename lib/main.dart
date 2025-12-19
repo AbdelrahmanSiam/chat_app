@@ -21,11 +21,11 @@ class ScholarChat extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        SiginInScreen.pageId: (context) => SiginInScreen(),
+        SignInScreen.pageId: (context) => SignInScreen(),
         RegisterScreen.pageId: (context) => RegisterScreen(),
         ChatScreen.pageId: (context) => ChatScreen(),
       },
-      initialRoute: ChatScreen.pageId,
+      initialRoute: SignInScreen.pageId,
     );
   }
 }

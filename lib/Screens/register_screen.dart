@@ -75,6 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 10,
                 ),
                 CustomTextFormField(
+                  isObsureText: true,
                   onChanged: (value) {
                     password = value;
                   },
@@ -96,7 +97,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             context,
                             "Your email are created succesfully.",
                             Colors.green);
-                            Navigator.pushNamed(context,ChatScreen.pageId);
+                        Navigator.pushNamed(context, ChatScreen.pageId,
+                            arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(

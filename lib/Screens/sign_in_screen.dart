@@ -8,14 +8,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class SiginInScreen extends StatefulWidget {
-  SiginInScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  SignInScreen({super.key});
   static String pageId = 'SignInScreen';
   @override
-  State<SiginInScreen> createState() => _SiginInScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SiginInScreenState extends State<SiginInScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   String? email;
 
   String? password;
@@ -71,11 +71,13 @@ class _SiginInScreenState extends State<SiginInScreen> {
                 CustomTextFormField(
                   onChanged: (value) => email = value,
                   text: 'Email',
+                  
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 CustomTextFormField(
+                  isObsureText: true,
                   onChanged: (value) => password = value,
                   text: 'password',
                 ),
@@ -92,7 +94,8 @@ class _SiginInScreenState extends State<SiginInScreen> {
                         await userSiginIn();
                         showSnackBar(
                             context, 'Sign in successfuly', Colors.green);
-                        Navigator.pushNamed(context,ChatScreen.pageId);
+                        Navigator.pushNamed(context, ChatScreen.pageId,
+                            arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnackBar(
